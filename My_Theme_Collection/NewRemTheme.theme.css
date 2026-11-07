@@ -2,7 +2,7 @@
  * @name New Rem Theme
  * @author ShadowDevilsAvenged
  * @description Newer Rem theme for my return
- * @version 7.5
+ * @version 7.5.1
  */
 
 /* Selectors migrated against Discord public CSS (2026-11-07).
@@ -11,6 +11,7 @@
 #app-mount {
     --rem-background-image: url(https://images8.alphacoders.com/767/767470.jpg);
     --rem-avatar-radius: 5px;
+    --rem-folder-radius: 8px;
     --rem-text: #f2f0e8;
     --rem-text-muted: #929ba6;
     --rem-text-secondary: #bdc6d0;
@@ -2567,6 +2568,15 @@
 
 #app-mount .folderButton_RTMSuZ {
     background-color: rgba(0, 0, 0, .25) !important;
+}
+
+/* Round the collapsed folder preview and its expanded background. */
+#app-mount :is([class^="guilds_"], [class*=" guilds_"]) :is([class^="folderButton_"], [class*=" folderButton_"], [class^="folderButtonInner_"], [class*=" folderButtonInner_"], [class^="folderIconWrapper_"], [class*=" folderIconWrapper_"], [class^="folderPreviewWrapper_"], [class*=" folderPreviewWrapper_"], [class^="folderGroupBackground_"], [class*=" folderGroupBackground_"]) {
+    border-radius: var(--rem-folder-radius) !important;
+}
+
+#app-mount :is([class^="guilds_"], [class*=" guilds_"]) :is([class^="folderButtonInner_"], [class*=" folderButtonInner_"], [class^="folderPreviewWrapper_"], [class*=" folderPreviewWrapper_"]) {
+    overflow: hidden;
 }
 
 .iconInactive_qqAqr1 {
