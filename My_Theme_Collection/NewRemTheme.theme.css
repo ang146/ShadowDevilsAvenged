@@ -2,7 +2,7 @@
  * @name New Rem Theme
  * @author ShadowDevilsAvenged
  * @description Newer Rem theme for my return
- * @version 7.5.1
+ * @version 7.5.3
  */
 
 /* Selectors migrated against Discord public CSS (2026-11-07).
@@ -18,6 +18,7 @@
     --rem-accent: #a9d9f0;
     --rem-sidebar-background: rgba(12, 20, 30, .3);
     --rem-member-background: rgba(20, 30, 42, .45);
+    --rem-member-offline-background: rgba(76, 94, 114, .5);
     --rem-message-hover: rgba(5, 12, 20, .38);
     --rem-input-background: rgba(43, 57, 73, .88);
     background-image: linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, .65)), var(--rem-background-image);
@@ -5292,6 +5293,29 @@ background-color: #1f3dff
 
 #app-mount :is([class^="members_"], [class*=" members_"]) :is([class^="member_"], [class*=" member_"], [data-list-item-id^="members-"]):is(:hover, [class^="selected_"], [class*=" selected_"]) {
     background: rgba(20, 30, 42, .72) !important;
+}
+
+/* Offline opacity belongs to the whole row, including avatars and text.
+   Reset the marker itself, even when it is on a wrapper around the member. */
+#app-mount :is([class^="members_"], [class*=" members_"], [class^="membersWrap_"], [class*=" membersWrap_"], [data-list-id="members"]) :is([class^="offline_"], [class*=" offline_"]) {
+    --channels-default: var(--rem-text);
+    --text-normal: var(--rem-text);
+    --text-default: var(--rem-text);
+    --text-muted: var(--rem-text-secondary);
+    background: var(--rem-member-offline-background) !important;
+    border-radius: 7px;
+    color: var(--rem-text);
+    opacity: 0.3 !important;
+}
+
+#app-mount :is([class^="members_"], [class*=" members_"], [class^="membersWrap_"], [class*=" membersWrap_"], [data-list-id="members"]) :is([class^="offline_"], [class*=" offline_"]):is(:hover, [class^="selected_"], [class*=" selected_"]) {
+    background: rgba(94, 114, 136, .62) !important;
+}
+
+/* Let the offline wrapper paint the tint once when rows are nested. */
+#app-mount :is([class^="members_"], [class*=" members_"], [class^="membersWrap_"], [class*=" membersWrap_"], [data-list-id="members"]) :is([class^="offline_"], [class*=" offline_"]) :is([class^="member_"], [class*=" member_"], [class^="memberInner_"], [class*=" memberInner_"], [class^="layout_"], [class*=" layout_"], [class^="childContainer_"], [class*=" childContainer_"]) {
+    background: transparent !important;
+    opacity: 1 !important;
 }
 
 #app-mount :is([class^="membersGroup_"], [class*=" membersGroup_"]) {
